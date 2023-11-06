@@ -155,3 +155,26 @@ VALUES
     (8, 8, 108),  -- Fanny has Thunder Belt
     (9, 9, 109),  -- Leomord has Blade Armor
     (10, 10, 110);  -- Chou has Feather of Heaven
+--3.    Add a new column named item_price to the item table
+ALTER TABLE item
+ADD item_price DECIMAL(10, 2);
+
+--4.    Update the state of hero 1 to inactive
+UPDATE public.hero
+SET is_active = false
+WHERE hero_id = 1;
+-- Delete the item associated with hero 1
+DELETE FROM public.heroitem
+WHERE hero_id = 1;
+
+--5.    List player names and their corresponding hero names with active heroes
+SELECT p.player_name, h.hero_name
+FROM public.player p
+JOIN public.hero h ON p.hero_id = h.hero_id
+WHERE h.is_active = true;
+
+--6.    List heroes classified as archers
+SELECT h.hero_name, c.class_name
+FROM public.hero h
+JOIN public.class c ON h.class_id = c.class_id
+WHERE c.class_name = 'Archer';
