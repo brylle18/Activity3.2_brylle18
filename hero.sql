@@ -68,8 +68,6 @@ CREATE TABLE IF NOT EXISTS public.HeroItem
     FOREIGN KEY (hero_id) REFERENCES Hero(hero_id),
     FOREIGN KEY (item_id) REFERENCES Item(item_id)
 );
-
-
 --2.	Create new branch named "feat/insert-data
 
 -- Insert data into the Class table
@@ -155,3 +153,15 @@ VALUES
     (8, 8, 108),  -- Fanny has Thunder Belt
     (9, 9, 109),  -- Leomord has Blade Armor
     (10, 10, 110);  -- Chou has Feather of Heaven
+
+--3.    Add a new column named item_price to the item table
+ALTER TABLE item
+ADD item_price DECIMAL(10, 2);
+
+--4.    Update the state of hero 1 to inactive
+UPDATE public.hero
+SET is_active = false
+WHERE hero_id = 1;
+-- Delete the item associated with hero 1
+DELETE FROM public.heroitem
+WHERE hero_id = 1;
