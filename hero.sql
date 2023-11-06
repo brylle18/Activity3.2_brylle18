@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS public.HeroItem
     FOREIGN KEY (item_id) REFERENCES Item(item_id)
 );
 
-
 --2.	Create new branch named "feat/insert-data
 
 -- Insert data into the Class table
